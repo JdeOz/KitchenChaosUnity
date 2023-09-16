@@ -59,6 +59,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
     private void HandleInteractions(Vector2 inputVector) {
         if (inputVector != Vector2.zero) {
             lastDir = new Vector3(inputVector.x, 0f, inputVector.y);
+            transform.forward = Vector3.Slerp(transform.forward, lastDir, Time.deltaTime * rotationSpeed);
         }
 
         float interactDistance = 2f;
@@ -102,8 +103,6 @@ public class Player : MonoBehaviour, IKitchenObjectParent {
 
         isWalking = moveDir != Vector3.zero;
         transform.position += moveDir * (moveSpeed * Time.deltaTime);
-
-        transform.forward = Vector3.Slerp(transform.forward, moveX + moveZ, Time.deltaTime * rotationSpeed);
     }
 
     private void SetSelectedCounter(BaseCounter selectedCounter) {

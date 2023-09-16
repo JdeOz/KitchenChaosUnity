@@ -18,6 +18,7 @@ public class CuttingCounter : BaseCounter {
 
     public override void InteractAlternate(Player player) {
         if (HasKitchenObject()) {
+            Debug.Log("aea");
             GetKitchenObject().SliceKitchenObject();
         }
     }
